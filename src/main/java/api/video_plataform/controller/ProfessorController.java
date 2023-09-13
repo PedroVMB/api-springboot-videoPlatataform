@@ -56,7 +56,7 @@ public class ProfessorController {
 
     @GetMapping("/{id}")
     public ResponseEntity detalhar(@PathVariable Long id) {
-        var medico = repository.getReferenceById(id);
-        return ResponseEntity.ok(new DadosDetalhamentoProfessor(medico));
+        var professor = repository.getReferenceById(id);
+        return ResponseEntity.ok(new DadosDetalhamentoProfessor(professor));
     }
 }
