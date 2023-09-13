@@ -21,6 +21,7 @@ public class AdministradorController {
 
     @PostMapping
     @Transactional
+    @CrossOrigin(origins = "*",maxAge = 3600)
     public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroAdministrador dados, UriComponentsBuilder uriBuilder) {
         var administrador = new Administrador(dados);
         repository.save(administrador);

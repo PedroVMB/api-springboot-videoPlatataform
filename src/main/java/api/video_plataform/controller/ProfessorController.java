@@ -14,7 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("professor")
-@CrossOrigin("*")
+@CrossOrigin(origins = "*",maxAge = 3600)
 public class ProfessorController {
 
     @Autowired
