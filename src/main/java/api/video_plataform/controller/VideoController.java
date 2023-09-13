@@ -14,6 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("video")
+@CrossOrigin("*")
 public class VideoController {
 
     @Autowired

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 @RestController
 @RequestMapping("aluno")
+@CrossOrigin("*")
 public class AlunoController {
     @Autowired
     private AlunoRepository repository;

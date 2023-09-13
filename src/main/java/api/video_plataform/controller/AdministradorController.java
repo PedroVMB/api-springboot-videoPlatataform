@@ -14,6 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("administrador")
+@CrossOrigin("*")
 public class AdministradorController {
     @Autowired
     private AdministradorRepository repository;
