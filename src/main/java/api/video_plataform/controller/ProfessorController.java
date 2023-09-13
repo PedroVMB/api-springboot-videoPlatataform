@@ -2,7 +2,7 @@ package api.video_plataform.controller;
 
 import api.video_plataform.domain.professor.*;
 import api.video_plataform.repository.ProfessorRepository;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,20 +14,20 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("professor")
-public class MedicoController {
+public class ProfessorController {
 
     @Autowired
     private ProfessorRepository repository;
 
     @PostMapping
     @Transactional
-    public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroProfessor dados, UriComponentsBuilder uriBuilder){
+    public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroProfessor dados, UriComponentsBuilder uriBuilder) {
         var professor = new Professor(dados);
         repository.save(professor);
 
-        var uri = uriBuilder.path("/professor/{id}").buildAndExpand(professor.getId()).toUri();
+        var uri = uriBuilder.path("/medicos/{id}").buildAndExpand(professor.getId()).toUri();
 
-        return ResponseEntity.created(uri).body(professor);
+        return ResponseEntity.created(uri).body(new DadosDetalhamentoProfessor(professor));
     }
 
     @GetMapping
@@ -37,12 +37,12 @@ public class MedicoController {
     }
 
     @PutMapping
-    @org.springframework.transaction.annotation.Transactional
+    @Transactional
     public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoProfessor dados) {
         var professor = repository.getReferenceById(dados.id());
         professor.atualizarInformacoesProfessor(dados);
 
-        return ResponseEntity.ok().body(professor);
+        return ResponseEntity.ok(new DadosDetalhamentoProfessor(professor));
     }
 
     @DeleteMapping("/{id}")

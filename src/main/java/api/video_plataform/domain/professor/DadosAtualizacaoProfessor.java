@@ -7,6 +7,8 @@ public record DadosAtualizacaoProfessor(
         Long id,
         String nome,
         String email,
-        String senha
+        String senha,
+
+        Boolean ativo
 ) {
 }

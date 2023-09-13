@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(of = "id")
 public class Professor {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String email;
@@ -38,6 +38,9 @@ public class Professor {
         }
         if(dados.senha() != null){
             this.senha = dados.senha();
+        }
+        if(dados.ativo() != null){
+            this.ativo = dados.ativo();
         }
     }
 
